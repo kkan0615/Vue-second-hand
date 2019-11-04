@@ -1,0 +1,35 @@
+/* Color Theme Swatches in Hex
+    $패션-1-hex: #010A26; 검정
+    #18D65A 밝은 초록
+    $패션-2-hex: #1FBF84; 초록
+    $패션-3-hex: #1BA673; 중간초록
+    $패션-4-hex: #1A7352; 가장진한초록
+    $패션-5-hex: #D9D5C5; 사랙
+
+    Color Theme Swatches in RGBA
+    $패션-1-rgba: rgba(0,10,38, 1);
+    $패션-2-rgba: rgba(30,191,132, 1);
+    $패션-3-rgba: rgba(26,165,114, 1);
+    $패션-4-rgba: rgba(26,114,82, 1);
+    $패션-5-rgba: rgba(216,213,197, 1);
+
+    /* Color Theme Swatches in HSLA
+    $패션-1-hsla: hsla(225, 96, 7, 1);
+    $패션-2-hsla: hsla(157, 72, 43, 1);
+    $패션-3-hsla: hsla(157, 72, 37, 1);
+    $패션-4-hsla: hsla(157, 62, 27, 1);
+    $패션-5-hsla: hsla(50, 20, 81, 1);
+*/
+
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #F2F2F2;
+}
+
+.test {
+    background-color: #18D65A;
+    color: #010A26;
+    height: 100px;
+}
+
