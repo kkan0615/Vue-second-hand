@@ -114,7 +114,7 @@ const setupProgress = (axios, ctx) => {
 export default (ctx, inject) => {
   // baseURL
   const baseURL = process.browser
-      ? 'http://localhost:3000/'
+      ? '/'
       : (process.env._AXIOS_BASE_URL_ || 'http://localhost:3000/')
 
   // Create fresh objects for all default header scopes
@@ -154,6 +154,8 @@ export default (ctx, inject) => {
 
   // Create new axios instance
   const axios = Axios.create(axiosOptions)
+  axios.CancelToken = Axios.CancelToken
+  axios.isCancel = Axios.isCancel
 
   // Extend axios proto
   extendAxiosInstance(axios)

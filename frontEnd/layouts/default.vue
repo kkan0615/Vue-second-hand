@@ -34,7 +34,7 @@ export default {
     head: {
         script: [
             { src: 'https://kit.fontawesome.com/cdc70df69c.js' },
-            { src: 'https://fonts.googleapis.com/css?family=Sunflower:300&display=swap' }
+            { scr: '' }
         ],
     }
 }

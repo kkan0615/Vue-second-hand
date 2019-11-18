@@ -1,22 +1,22 @@
 <!--
     Author: Youngjin Kwak
     Start: 11/02/2019
-    Update: 11/03/2019
-    Purpose: Sign Up form page
+    Update: 11/15/2019
+    Purpose: Login form page
  -->
 <template>
     <div class="content">
+        <nuxt-link to="/"></nuxt-link>
+        <div class = "message" v-if="message != ''">
+            <h1>{{ message }}</h1>
+        </div>
         <!-- signup from 시작 -->
         <form ref="form" @submit.prevent="onSubmitForm" class="signup-form">
             <h1>Sign Up</h1>
             <label for="Username">Username</label> <br>
             <input v-model="username" type="text" required placeholder="아이디"> <br>
-            <label for="email">Email</label> <br>
-            <input v-model="email" type="email" required placeholder="이메일"> <br>
             <label for="password">Password</label> <br>
             <input v-model="password" type="password" required placeholder="패스워드"> <br>
-            <label for="nickname">Nickname</label> <br>
-            <input v-model="nickname" type="text" required placeholder="닉네임"> <br>
             <button type="submit" class="submit-button">Sign Up</button>
         </form>
         <hr> <!-- 점선 -->
@@ -32,26 +32,24 @@ export default {
     data() {
         return {
             username: '', /* Username */
-            email: '', /* email */
-            nickname: '', /* Nickname */
             password: '', /* Password */
+            message: '',
         }
     },
     methods: {
         /* When use submit form it will be run */
         onSubmitForm() {
-            this.$store.dispatch('users/signUp', {
+            this.$store.dispatch('users/logIn', {
                 username: this.username,
-                email: this.email,
-                nickname: this.nickname,
                 password: this.password
             }).then(() => {
                this.$router.push({
-                   path: '/login',
+                   path: '/',
                });
             }).catch((err) => {
                 console.error(err);
-                alert('Sign up fail' + err);
+                alert('Login fail: ' + err);
+                this.message = err;
             });
         }
     },
@@ -91,15 +89,14 @@ export default {
     /*********************************************************************
     *   signup-form
     *   Author: Youngjin Kwak
-    *   StartedAT: 11/03/2019
-    *   UpdatedAt:  11/03/2019
+    *   StartedAT: 11/15/2019
+    *   UpdatedAt:  11/15/2019
     *   Purpose: Sign Up from css
     *   Including:
     *               label: label for each input boxes
     *               input: input box css
     **********************************************************************/
 .signup-form {
-
     h1 {
         text-align: center;
     }

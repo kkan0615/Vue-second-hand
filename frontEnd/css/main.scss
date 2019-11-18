@@ -1,0 +1,26 @@
+/*********************************************************************
+*   Filename: main.scss
+*   Author: Youngjin Kwak
+*   StartedAT: 11/04/2019
+*   UpdatedAt:  11/04/2019
+*   Purpose: index scss file
+*
+**********************************************************************/
+
+/*
+    from: https://fonts.google.com/specimen/Nanum+Gothic?selection.family=Nanum+Gothic
+*/
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+$font: 'Nanum Gothic'; /* font, with sans-serif */
+
+/*********************************************************************
+*   Body
+*   Author: Youngjin Kwak
+*   StartedAT: 11/04/2019
+*   UpdatedAt:  11/04/2019
+*   Including:
+*
+**********************************************************************/
+body {
+    font-family: $font, sans-serif;
+}

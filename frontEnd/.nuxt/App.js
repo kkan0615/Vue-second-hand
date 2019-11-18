@@ -9,7 +9,7 @@ import {
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '..\\css\\main.css'
+import '..\\css\\main.scss'
 
 import _6f6c098b from '..\\layouts\\default.vue'
 import _7dd76ffc from '..\\layouts\\sign-login-form.vue'
