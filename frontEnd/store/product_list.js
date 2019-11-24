@@ -21,5 +21,19 @@ export const actions = {
             console.error(err);
             throw err.message;
         });;
+    },
+    getByHashTag({ commit, state }, payload) {
+        return this.$axios.post('http://127.0.0.1:8001/hashtags/hashTag/'+payload.name, {
+            /* If there is data to send, write in here */
+        }, {
+            withCredentials: true,
+        }).then((res) => {
+            console.log(res.data);
+            commit('setProducts', res.data);
+            return res;
+        }).catch((err) => {
+            console.error(err);
+            throw err.message;
+        });;
     }
 }

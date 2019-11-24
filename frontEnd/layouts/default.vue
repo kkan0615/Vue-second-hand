@@ -6,15 +6,21 @@
  -->
 <template>
     <div>
-        <div class="top-nav">
+        <div class="topnav">
             <nuxt-link to="/">home</nuxt-link>
-            <div v-if="me">
+            <div class="dropdown" v-if="me">
                 <button @click="onLogOut" v-if="me" >로그아웃</button>
             </div>
-            <div v-else>
-                <nuxt-link to="/login">로그인</nuxt-link>
-                <nuxt-link to="/signUp">회원가입</nuxt-link>
+            <div class="dropdown" v-else>
+                <button class="dropbtn">
+                    로그인하기
+                </button>
+                <div class="dropdown-content">
+                    <nuxt-link to="/login">로그인</nuxt-link>
+                    <nuxt-link to="/signUp">회원가입</nuxt-link>
+                </div>
             </div>
+            <nuxt-link to="/products">최신순</nuxt-link>
         </div> <!-- top-nav end -->
         <div class="content">
             <nuxt />
@@ -36,6 +42,24 @@ export default {
             { src: 'https://kit.fontawesome.com/cdc70df69c.js' },
             { scr: '' }
         ],
+    },
+    computed: {
+        me() {
+            return this.$store.state.users.user;
+        }
+    },
+    methods: {
+        onLogOut() {
+            this.$store.dispatch('users/logOut')
+            .then((res) => {
+                alert("Success to log out");
+            }).catch((err) => {
+                alert(err);
+            });
+        }
+    },
+    created() {
+        if(this.$store.state.users.user) this.user = this.$store.state.users.user;
     }
 }
 </script>

@@ -22,6 +22,7 @@ module.exports = {
     },
     css: [
         '~/css/main.scss'
+
     ],
     /**
      * Moduels

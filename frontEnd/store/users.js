@@ -101,10 +101,13 @@ export const actions = {
             withCredentials: true,
         })
         .then((data) => {
-            commit('setMe', null);
+            console.log(data);
+
+            commit('setUser', null);
         })
         .catch((err) => {
             console.error(err);
+            alert("hi");
         });
     }
 }
