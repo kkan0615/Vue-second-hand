@@ -80,11 +80,15 @@ export const actions = {
         });
     },
     logIn({commit, state}, payload) {
-        let formData = new FormData();
-        formData.append('username', payload.username);
-        formData.append('password', payload.password);
+        //let formData = new FormData();
+        //formData.append('username', payload.username);
+        //formData.append('password', payload.password);
 
-        return this.$axios.post('http://127.0.0.1:8001/login', formData, {
+        //return this.$axios.post('http://127.0.0.1:8001/auth/login', formData, {
+        return this.$axios.post('http://127.0.0.1:8001/auth/login', {
+            username: payload.username,
+            password: payload.password,
+        }, {
             withCredentials: true,
         }).then((res) => {
             console.log(res.data);

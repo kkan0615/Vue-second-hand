@@ -1,15 +1,15 @@
 <!--
     Author: Youngjin Kwak
     Start: 11/02/2019
-    Update: 11/03/2019
-    Purpose: Sign Up form page
+    Update: 12/17/2019
+    Purpose: Component for write post
  -->
 
  <template>
     <div>
-        <div class="expense-form">
+        <div class="write-form">
             <label for="title">Title</label>
-            <input v-model="title" type="text" required placeholder="Title"> <br>
+            <input v-model="title" type="text" required placeholder="제목"> <br>
             <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
                 <div class="menubar">
                     <button
@@ -140,6 +140,12 @@
                 </div>
                 </editor-menu-bar>
                 <editor-content class="editor__content" :editor="editor" />
+                <label for="hashTags">해쉬태그</label> <br>
+                <textarea v-model="hashTags" type="textarea" required placeholder=""></textarea> <br>
+                <label for="">기한 없음</label>
+                <input v-model="isInfinity" type="checkbox" checked> <br>
+                <label for="time">time</label>
+                <input v-model="time" type="date"> <br>
             <button type="submit" @click="onSubmitForm()">Submit</button>
         </div>
     </div>
@@ -168,16 +174,19 @@ import {
 } from 'tiptap-extensions'
 export default {
   components: {
-    EditorContent,
-    EditorMenuBar,
+        EditorContent,
+        EditorMenuBar,
   },
   data() {
     return {
         title: '',
+        hashTags: '',
         editor: null,
+        isInfinity: true,
+        time: '2019-01-01',
     }
   },
-  mounted() {
+    mounted() {
         this.editor = new Editor({
             extensions: [
                 new Blockquote(),
@@ -198,12 +207,39 @@ export default {
                 new Underline(),
                 new History(),
             ],
-            content: '<p>Write your message on here</p>',
-        })
+            content: '<p>내용을 입력해주세요</p>',
+        });
     },
-  beforeDestroy() {
-    this.editor.destroy()
-  },
+    methods: {
+        /**
+         * Author: Youngjin Kwak,
+         * Purpose: To submit file to database
+         */
+        onSubmitForm() {
+            this.$axios.post('http://127.0.0.1:8001/products/write', {
+                title: this.title,
+                hashTags: this.hashTags,
+                content: this.editor.view.dom.innerHTML,
+                isInfinity: this.isInfinity,
+                time: this.time,
+            }, {
+                withCredentials: true,
+            }).then((res) => {
+                alert('성공적으로 만들어졌습니다.');
+                this.$router.push({
+                   name: 'products-id',
+                   params: { id: res.id },
+               });
+            }).catch((err) => {
+                console.error(err);
+                console.log(err);
+                alert('실패했습니다. 다시 시도해주세요 ' + err.message);
+            });;
+        }
+    },
+    beforeDestroy() {
+        this.editor.destroy()
+    },
 }
 </script>
 

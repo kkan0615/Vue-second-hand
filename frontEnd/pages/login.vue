@@ -1,7 +1,7 @@
 <!--
     Author: Youngjin Kwak
     Start: 11/02/2019
-    Update: 11/15/2019
+    Update: 12/16/2019
     Purpose: Login form page
  -->
 <template>
@@ -12,16 +12,16 @@
         </div>
         <!-- signup from 시작 -->
         <form ref="form" @submit.prevent="onSubmitForm" class="signup-form">
-            <h1>Sign Up</h1>
+            <h1>Login</h1>
             <label for="Username">Username</label> <br>
             <input v-model="username" type="text" required placeholder="아이디"> <br>
             <label for="password">Password</label> <br>
             <input v-model="password" type="password" required placeholder="패스워드"> <br>
-            <button type="submit" class="submit-button">Sign Up</button>
+            <button type="submit" class="submit-button">Login</button>
         </form>
         <hr> <!-- 점선 -->
         <div class="bottom">
-            <nuxt-link to="/login">로그인하러가기</nuxt-link>
+            <nuxt-link to="/signUp">회원가입하기</nuxt-link>
         </div> <!-- bottom end -->
     </div> <!-- content end -->
 </template>
