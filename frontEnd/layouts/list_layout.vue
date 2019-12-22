@@ -1,8 +1,8 @@
 <!--
     Author: Youngjin Kwak
-    Start: 10/25/2019
-    Update: 11/03/2019
-    Purpose: default layout
+    Start: 12/20/2019
+    Update: 12/20/2019
+    Purpose: layout for list
  -->
 <template>
     <div>
@@ -64,11 +64,11 @@ export default {
     /*********************************************************************
     *   content
     *   Author: Youngjin Kwak
-    *   10/25/2019
+    *   12/20/2019
     **********************************************************************/
     .content {
         font-family: 'Sunflower', sans-serif;
-        padding: 0px 100px 0px 100px;
+        padding: 0px 10px 0px 10px;
         margin: 0;
     }
 
