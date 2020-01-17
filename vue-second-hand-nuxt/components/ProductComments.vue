@@ -6,15 +6,18 @@
  -->
 <template>
     <v-card>
-        <v-card-text>
+        <v-card-text >
             <v-text-field
-                dense
+                width="100%"
                 label="댓글 남기기"
                 v-model="commentContent"
+                @click="focusComment()"
             ></v-text-field>
         </v-card-text>
-        <v-card-actions>
-            <v-btn class="mr-4" @click="sendComment()">댓글작성</v-btn>
+        <v-card-actions v-if="isFoucs">
+            <v-spacer></v-spacer>
+            <v-btn class="mr-4 float-right" @click="unFocusComment()">취소</v-btn>
+            <v-btn class="mr-4 float-right" @click="sendComment()">댓글작성</v-btn>
         </v-card-actions>
         <v-list two-line v-if="comments">
             <template v-for="(comment, index) in comments">
@@ -40,6 +43,7 @@ export default {
     data() {
         return {
             commentContent: null, // Comment Content
+            isFoucs: false,
         }
     },
     methods: {
@@ -57,6 +61,13 @@ export default {
                 console.error(err);
                 alert(err);
             });
+        },
+
+        focusComment() {
+            this.isFoucs = true;
+        },
+        unFocusComment() {
+            this.isFoucs = false;
         }
     },
     computed: {
