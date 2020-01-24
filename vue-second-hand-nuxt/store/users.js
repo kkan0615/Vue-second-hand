@@ -14,6 +14,7 @@
 export const state = () => ({
     user: null, /** user */
     imagePath: null,
+    detail: null,
 });
 
 /***************************************************
@@ -48,6 +49,18 @@ export const mutations = {
 
     setImagePath(state, payload) {
         state.imagePath = payload;
+    },
+
+    /***************************************************
+     * Author: Youngin Kwak
+     * startedAt: 01/24/2020
+     * UpdateAt: 01/24/2020
+     * Parameter : state - state in state
+     *              payload - res value
+     * Purpose: Set detail in user
+    ***************************************************/
+    setDetail(state, payload) {
+        state.detail = payload;
     },
 }
 
@@ -124,12 +137,33 @@ export const actions = {
         })
         .then((data) => {
             console.log(data);
-
             commit('setUser', null);
+            commit('setDetail', null);
         })
         .catch((err) => {
             console.error(err);
             alert("hi");
         });
-    }
+    },
+    /***************************************************
+     * Author: Youngin Kwak
+     * startedAt: 01/24/2019
+     * UpdateAt: 01/24/2019
+     * Parameter : commit -
+     *             state -
+     *             payload -
+     * Purpose: get user detail form server
+    ***************************************************/
+    getDetail({ commit }) {
+        this.$axios.get('http://127.0.0.1:8001/auth/detail', {}, {
+            withCredentials: true,
+        })
+        .then((res) => {
+            console.log(res);
+            commit('setDetail', res.data)
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    },
 }
