@@ -150,20 +150,21 @@ export const actions = {
      * startedAt: 01/24/2019
      * UpdateAt: 01/24/2019
      * Parameter : commit -
-     *             state -
      *             payload -
      * Purpose: get user detail form server
     ***************************************************/
-    getDetail({ commit }) {
-        this.$axios.get('http://127.0.0.1:8001/auth/detail', {}, {
+    getDetail({ commit }, payload) {
+        return this.$axios.post(`http://127.0.0.1:8001/profile/${ payload.id }`, {}, {
             withCredentials: true,
         })
         .then((res) => {
             console.log(res);
-            commit('setDetail', res.data)
+            commit('setDetail', res.data.detail);
+            return res.data;
         })
         .catch((err) => {
             console.error(err);
+            throw error.response.status;
         });
     },
 }
